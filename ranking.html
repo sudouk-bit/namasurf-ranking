@@ -18,13 +18,17 @@
     --muted:      #6b8a72;
     --radius:     16px;
   }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
   body {
     font-family: 'Hiragino Kaku Gothic Pro','Yu Gothic UI','Meiryo',sans-serif;
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
   }
+
+  /* ── ヘッダー ── */
   header {
     background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
     color: white;
@@ -53,8 +57,21 @@
     font-size: 13px;
     color: rgba(255,255,255,0.9);
   }
-  main { max-width: 760px; margin: -24px auto 60px; padding: 0 16px; }
-  .podium { display: flex; gap: 12px; margin-bottom: 32px; align-items: flex-end; }
+
+  /* ── メインコンテンツ ── */
+  main {
+    max-width: 760px;
+    margin: -24px auto 60px;
+    padding: 0 16px;
+  }
+
+  /* ── TOP3カード ── */
+  .podium {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+    align-items: flex-end;
+  }
   .podium-item {
     flex: 1;
     background: var(--card-bg);
@@ -66,19 +83,82 @@
     transition: transform .2s;
   }
   .podium-item:hover { transform: translateY(-4px); }
-  .podium-item.rank-1 { order: 2; padding-top: 28px; box-shadow: 0 8px 32px rgba(244,185,66,0.25); border: 2px solid var(--gold); }
+  .podium-item.rank-1 { order: 2; padding-top: 20px; box-shadow: 0 8px 32px rgba(244,185,66,0.25); border: 2px solid var(--gold); }
   .podium-item.rank-2 { order: 1; }
   .podium-item.rank-3 { order: 3; }
-  .medal { font-size: 36px; display: block; margin-bottom: 8px; }
+
+  .medal {
+    font-size: 36px;
+    display: block;
+    margin-bottom: 8px;
+  }
   .podium-item.rank-1 .medal::after { content: '🥇'; }
   .podium-item.rank-2 .medal::after { content: '🥈'; }
   .podium-item.rank-3 .medal::after { content: '🥉'; }
-  .podium-name { font-size: 13px; font-weight: 700; line-height: 1.4; margin-bottom: 8px; color: var(--text); }
-  .podium-score-num { font-size: 28px; font-weight: 800; color: var(--green-mid); display: block; }
+
+  /* 店舗写真（Top3） */
+  .podium-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 10px;
+    display: block;
+    border: 3px solid var(--green-light);
+    background: #e8f5ec;
+  }
+  .podium-item.rank-1 .podium-photo {
+    width: 96px;
+    height: 96px;
+    border-color: var(--gold);
+    box-shadow: 0 4px 16px rgba(244,185,66,0.4);
+  }
+  .podium-photo-placeholder {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8f5ec;
+    border: 3px solid var(--green-light);
+    font-size: 28px;
+  }
+  .podium-item.rank-1 .podium-photo-placeholder {
+    width: 96px;
+    height: 96px;
+    border-color: var(--gold);
+  }
+
+  .podium-name {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .podium-name a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .podium-name a:hover {
+    color: var(--green-mid);
+    text-decoration: underline;
+  }
+  .podium-score-num {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--green-mid);
+    display: block;
+  }
   .podium-score-label { font-size: 10px; color: var(--muted); }
   .podium-stars { font-size: 14px; margin: 6px 0 2px; color: var(--gold); letter-spacing: 1px; }
   .podium-reviews { font-size: 11px; color: var(--muted); }
+
+  /* ── ランキングリスト ── */
   .ranking-list { display: flex; flex-direction: column; gap: 10px; }
+
   .ranking-card {
     background: var(--card-bg);
     border-radius: var(--radius);
@@ -91,39 +171,103 @@
     animation: slideIn .4s ease both;
   }
   .ranking-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
-  @keyframes slideIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-  .rank-num { font-size: 22px; font-weight: 800; color: var(--muted); min-width: 36px; text-align: center; }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .rank-num {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--muted);
+    min-width: 36px;
+    text-align: center;
+  }
   .rank-num.top { color: var(--green-mid); }
+
   .card-info { flex: 1; }
   .card-name { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .card-name a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .card-name a:hover {
+    color: var(--green-mid);
+    text-decoration: underline;
+  }
   .card-stars { color: var(--gold); font-size: 14px; letter-spacing: 1px; }
   .card-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .card-score { text-align: right; min-width: 64px; }
-  .score-num { font-size: 24px; font-weight: 800; color: var(--green-mid); display: block; }
+
+  .card-score {
+    text-align: right;
+    min-width: 64px;
+  }
+  .score-num {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--green-mid);
+    display: block;
+  }
   .score-label { font-size: 10px; color: var(--muted); }
-  .empty { text-align: center; padding: 80px 20px; color: var(--muted); }
+
+  /* ── 空状態 ── */
+  .empty {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--muted);
+  }
   .empty p { font-size: 18px; margin-bottom: 8px; }
   .empty small { font-size: 13px; }
-  footer { text-align: center; padding: 32px 20px; font-size: 12px; color: var(--muted); border-top: 1px solid #e8f0ea; }
+
+  /* ── フッター ── */
+  footer {
+    text-align: center;
+    padding: 32px 20px;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid #e8f0ea;
+  }
   footer a { color: var(--green-mid); text-decoration: none; }
-  .loading { text-align: center; padding: 80px 20px; color: var(--muted); font-size: 16px; }
-  .spinner { display: inline-block; width: 40px; height: 40px; border: 4px solid #d0e8d6; border-top-color: var(--green-mid); border-radius: 50%; animation: spin .8s linear infinite; margin-bottom: 16px; }
+
+  /* ── ローディング ── */
+  .loading {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--muted);
+    font-size: 16px;
+  }
+  .spinner {
+    display: inline-block;
+    width: 40px; height: 40px;
+    border: 4px solid #d0e8d6;
+    border-top-color: var(--green-mid);
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+    margin-bottom: 16px;
+  }
   @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── レスポンシブ ── */
   @media (max-width: 500px) {
     .podium { gap: 8px; }
     .podium-name { font-size: 11px; }
     .podium-score-num { font-size: 22px; }
     header { padding: 36px 16px 48px; }
+    .podium-photo { width: 64px; height: 64px; }
+    .podium-item.rank-1 .podium-photo { width: 76px; height: 76px; }
   }
 </style>
 </head>
 <body>
+
 <header>
   <div class="header-milk">🥛</div>
-  <h1>須藤牧場 生シェイク祭り2026<br>レビューまとめ</h1>
-  <p class="subtitle">β版</p>
+  <h1>須藤牧場 生シェイク祭り2026<br>店舗ランキング</h1>
+  <p class="subtitle">お客様の声でつくる、今年のベストシェイク</p>
   <div class="updated-badge" id="updatedAt">読み込み中…</div>
 </header>
+
 <main>
   <div id="app">
     <div class="loading">
@@ -132,47 +276,129 @@
     </div>
   </div>
 </main>
+
 <footer>
   <p>© 株式会社須藤牧場 &nbsp;|&nbsp; <a href="https://www.sudo-farm.com/" target="_blank">sudo-farm.com</a></p>
-  <p style="margin-top:6px">毎日17時に自動更新されます。承認済みレビューの総合スコア（平均評価×件数）で算出。</p>
+  <p style="margin-top:6px">ランキングは毎日17時に自動更新されます。承認済みレビューの総合スコア（平均評価×件数）で算出。</p>
 </footer>
+
 <script>
 const EMPTY_STARS = ['', '★☆☆☆☆', '★★☆☆☆', '★★★☆☆', '★★★★☆', '★★★★★'];
-function starStr(avg) { const r = Math.round(avg); return EMPTY_STARS[Math.min(5,Math.max(1,r))] || '—'; }
+
+function starStr(avg) {
+  const rounded = Math.round(avg);
+  return EMPTY_STARS[Math.min(5, Math.max(1, rounded))] || '—';
+}
 function fmtScore(s) { return parseFloat(s).toFixed(1); }
-function fmtAvg(a) { return parseFloat(a).toFixed(1); }
-function renderPodium(top3) {
-  return '<div class="podium">' + top3.map((s,i) =>
-    '<div class="podium-item rank-'+(i+1)+'"><span class="medal"></span><div class="podium-name">'+s.name+'</div><div class="podium-stars">'+starStr(s.avg_rating)+'</div><span class="podium-score-num">'+fmtScore(s.total_score)+'</span><span class="podium-score-label">総合スコア</span><div class="podium-reviews">'+s.review_count+'件のレビュー / 平均 '+fmtAvg(s.avg_rating)+'点</div></div>'
-  ).join('') + '</div>';
+function fmtAvg(a)   { return parseFloat(a).toFixed(1); }
+
+// スペース・全角スペースを正規化して照合
+function normalizeName(name) {
+  return name.replace(/[\s　]+/g, ' ').trim();
 }
-function renderList(shops) {
-  return '<div class="ranking-list">' + shops.map((s,i) =>
-    '<div class="ranking-card" style="animation-delay:'+(i*0.04)+'s"><div class="rank-num '+(i<3?'top':'')+'>'+(i+1)+'</div><div class="card-info"><div class="card-name">'+s.name+'</div><div class="card-stars">'+starStr(s.avg_rating)+'</div><div class="card-meta">レビュー '+s.review_count+'件 &nbsp;|&nbsp; 平均評価 '+fmtAvg(s.avg_rating)+'点</div></div><div class="card-score"><span class="score-num">'+fmtScore(s.total_score)+'</span><span class="score-label">スコア</span></div></div>'
-  ).join('') + '</div>';
+
+function buildStoreMap(storeInfo) {
+  const map = {};
+  (storeInfo.stores || []).forEach(s => {
+    map[normalizeName(s.name)] = { img: s.img, url: s.url };
+  });
+  return map;
 }
+
+function lookupStore(storeMap, name) {
+  return storeMap[normalizeName(name)] || {};
+}
+
+function photoEl(info, isFirst) {
+  if (info.img) {
+    const size = isFirst ? 96 : 80;
+    return `<img class="podium-photo" src="${info.img}" alt="" width="${size}" height="${size}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="podium-photo-placeholder" style="display:none">🏪</div>`;
+  }
+  return `<div class="podium-photo-placeholder">🏪</div>`;
+}
+
+function nameLink(name, url) {
+  if (url) {
+    return `<a href="${url}" target="_blank" rel="noopener">${name}</a>`;
+  }
+  return name;
+}
+
+function renderPodium(top3, storeMap) {
+  return `<div class="podium">
+    ${top3.map((s, i) => {
+      const info = lookupStore(storeMap, s.name);
+      return `
+      <div class="podium-item rank-${i+1}">
+        <span class="medal"></span>
+        ${photoEl(info, i === 0)}
+        <div class="podium-name">${nameLink(s.name, info.url)}</div>
+        <div class="podium-stars">${starStr(s.avg_rating)}</div>
+        <span class="podium-score-num">${fmtScore(s.total_score)}</span>
+        <span class="podium-score-label">総合スコア</span>
+        <div class="podium-reviews">${s.review_count}件のレビュー / 平均 ${fmtAvg(s.avg_rating)}点</div>
+      </div>`;
+    }).join('')}
+  </div>`;
+}
+
+function renderList(shops, storeMap) {
+  return `<div class="ranking-list">
+    ${shops.map((s, i) => {
+      const info = lookupStore(storeMap, s.name);
+      return `
+      <div class="ranking-card" style="animation-delay:${i * 0.04}s">
+        <div class="rank-num ${i < 3 ? 'top' : ''}">${i + 1}</div>
+        <div class="card-info">
+          <div class="card-name">${nameLink(s.name, info.url)}</div>
+          <div class="card-stars">${starStr(s.avg_rating)}</div>
+          <div class="card-meta">レビュー ${s.review_count}件 &nbsp;|&nbsp; 平均評価 ${fmtAvg(s.avg_rating)}点</div>
+        </div>
+        <div class="card-score">
+          <span class="score-num">${fmtScore(s.total_score)}</span>
+          <span class="score-label">スコア</span>
+        </div>
+      </div>`;
+    }).join('')}
+  </div>`;
+}
+
 async function load() {
   const app = document.getElementById('app');
   const badge = document.getElementById('updatedAt');
   try {
-    const res = await fetch('ranking.json?t=' + Date.now());
-    if (!res.ok) throw new Error('fetch failed');
-    const data = await res.json();
+    const t = Date.now();
+    const [rankRes, infoRes] = await Promise.all([
+      fetch('ranking.json?t=' + t),
+      fetch('store-info.json?t=' + t)
+    ]);
+    if (!rankRes.ok) throw new Error('ranking fetch failed');
+
+    const data = await rankRes.json();
+    const storeInfo = infoRes.ok ? await infoRes.json() : { stores: [] };
+    const storeMap = buildStoreMap(storeInfo);
+
     badge.textContent = '最終更新：' + (data.updated_at || '—');
-    const shops = (data.shops || []).sort((a,b) => b.total_score - a.total_score);
+
+    const shops = (data.shops || []).sort((a, b) => b.total_score - a.total_score);
     if (shops.length === 0) {
-      app.innerHTML = '<div class="empty"><p>🥛</p><p>まだレビューがありません</p><small>レビューが承認されるとここに表示されます</small></div>';
+      app.innerHTML = `<div class="empty"><p>🥛</p><p>まだレビューがありません</p><small>レビューが承認されるとここに表示されます</small></div>`;
       return;
     }
+
     const top3 = shops.slice(0, Math.min(3, shops.length));
     const rest = shops.slice(3);
-    app.innerHTML = renderPodium(top3) + (rest.length ? renderList(rest) : '');
-  } catch(e) {
+
+    app.innerHTML = renderPodium(top3, storeMap) + (rest.length ? renderList(rest, storeMap) : '');
+  } catch (e) {
     badge.textContent = 'データ取得中…';
-    app.innerHTML = '<div class="empty"><p>🥛</p><p>データを読み込んでいます</p><small>しばらくしてからページを更新してください</small></div>';
+    app.innerHTML = `<div class="empty"><p>🥛</p><p>データを読み込んでいます</p><small>しばらくしてからページを更新してください</small></div>`;
   }
 }
+
 load();
+// 10分ごとに自動更新
 setInterval(load, 600000);
 </script>
 </body>
