@@ -5,57 +5,118 @@
       "name": "木村ピーナッツ（ピネキ）",
       "review_count": 2,
       "avg_rating": 4.5,
-      "total_score": 9.0,
-      "latest_review_date": "2026-06-06"
+      "total_score": 9,
+      "latest_review_date": "2026-06-06",
+      "reviews": [
+        {
+          "date": "2026/06/06 10:52",
+          "rating": 5,
+          "text": "ピーナッツ🥜が濃くて、飲めるピーナッツ🥜でした‼️"
+        },
+        {
+          "date": "2026/06/05 17:21",
+          "rating": 4,
+          "text": "濃厚なピーナッツの味わいに加え、クラッシュピーナッツの香ばしい風味と食感が楽しめました。飲み応えもあ..."
+        }
+      ]
     },
     {
       "name": "Calf Hatch Yohyo",
       "review_count": 1,
-      "avg_rating": 5.0,
-      "total_score": 5.0,
-      "latest_review_date": "2026-06-02"
+      "avg_rating": 5,
+      "total_score": 5,
+      "latest_review_date": "2026-06-02",
+      "reviews": [
+        {
+          "date": "2026/06/02 20:17",
+          "rating": 5,
+          "text": "トマト🍅蜂蜜🍯ヨーグルト🐮生シェイクを頂きました。 野菜入りの生シェイクのイメージってなかなか無いんで..."
+        }
+      ]
     },
     {
       "name": "LAUNDRY&CAFE MAKANA",
       "review_count": 1,
-      "avg_rating": 5.0,
-      "total_score": 5.0,
-      "latest_review_date": "2026-06-07"
+      "avg_rating": 5,
+      "total_score": 5,
+      "latest_review_date": "2026-06-07",
+      "reviews": [
+        {
+          "date": "2026/06/07 10:10",
+          "rating": 5,
+          "text": "コナコーヒー生シェイクを食べました。 コーヒーのアイスもほんのり苦くて甘いシェイクにあってました。"
+        }
+      ]
     },
     {
       "name": "cafe&pâtisserie白雪小町",
       "review_count": 1,
-      "avg_rating": 5.0,
-      "total_score": 5.0,
-      "latest_review_date": "2026-06-03"
+      "avg_rating": 5,
+      "total_score": 5,
+      "latest_review_date": "2026-06-03",
+      "reviews": [
+        {
+          "date": "2026/06/03 07:51",
+          "rating": 5,
+          "text": "今年1杯目を飲ませていただいたお店です！ 甘さ控えめの和紅茶の生シェイクと甘いロールケーキをいただき..."
+        }
+      ]
     },
     {
       "name": "photon325",
       "review_count": 1,
-      "avg_rating": 5.0,
-      "total_score": 5.0,
-      "latest_review_date": "2026-06-06"
+      "avg_rating": 5,
+      "total_score": 5,
+      "latest_review_date": "2026-06-06",
+      "reviews": [
+        {
+          "date": "2026/06/06 10:55",
+          "rating": 5,
+          "text": "ノンアル、アルコール選べて。 神余っこり入りをいただきました。 スッカリした神余っこりと、アイスミルク..."
+        }
+      ]
     },
     {
       "name": "須藤牧場 富浦店",
       "review_count": 1,
-      "avg_rating": 5.0,
-      "total_score": 5.0,
-      "latest_review_date": "2026-06-07"
+      "avg_rating": 5,
+      "total_score": 5,
+      "latest_review_date": "2026-06-07",
+      "reviews": [
+        {
+          "date": "2026/06/07 10:07",
+          "rating": 5,
+          "text": "マンゴーも濃くて、口どけもなめらかでした"
+        }
+      ]
     },
     {
       "name": "naeme farmers stand",
       "review_count": 1,
-      "avg_rating": 4.0,
-      "total_score": 4.0,
-      "latest_review_date": "2026-06-01"
+      "avg_rating": 4,
+      "total_score": 4,
+      "latest_review_date": "2026-06-01",
+      "reviews": [
+        {
+          "date": "2026/06/01 20:30",
+          "rating": 4,
+          "text": "6月1日　初日に伺いました。 古民家をリメイクされた趣のあるお店。ハーブ農家さんが経営されていますので..."
+        }
+      ]
     },
     {
       "name": "伏姫BURGER",
       "review_count": 1,
-      "avg_rating": 4.0,
-      "total_score": 4.0,
-      "latest_review_date": "2026-06-04"
+      "avg_rating": 4,
+      "total_score": 4,
+      "latest_review_date": "2026-06-04",
+      "reviews": [
+        {
+          "date": "2026/06/04 12:53",
+          "rating": 4,
+          "text": "キャラメルが濃厚でバーガーと合う"
+        }
+      ]
     }
   ]
 }
