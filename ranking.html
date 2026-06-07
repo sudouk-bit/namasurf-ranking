@@ -36,8 +36,10 @@ main{max-width:720px;margin:0 auto;padding:0 24px 80px}
 .item-name{font-size:15px;font-weight:700;margin-bottom:5px;line-height:1.35}
 .item-name a{color:var(--text);text-decoration:none;border-bottom:1px solid transparent;transition:color .15s,border-color .15s;padding-bottom:1px}
 .item-name a:hover{color:var(--accent);border-bottom-color:var(--accent)}
-.item-meta{font-size:12px;color:var(--muted);font-weight:300;letter-spacing:.3px}
+.item-meta{font-size:12px;color:var(--muted);font-weight:300;letter-spacing:.3px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .item-rating{color:var(--accent);font-weight:500}
+.review-link{background:none;border:none;padding:0;color:var(--muted);font-size:12px;font-weight:300;cursor:pointer;font-family:inherit;letter-spacing:.3px;text-decoration:underline;text-decoration-color:var(--border);text-underline-offset:2px;transition:color .15s}
+.review-link:hover{color:var(--accent);text-decoration-color:var(--accent)}
 .item-score{text-align:right;min-width:60px}
 .score-val{font-size:20px;font-weight:700;display:block;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.5px;margin-bottom:4px}
 .score-label{font-size:10px;color:var(--muted);letter-spacing:2px;font-weight:400}
@@ -48,7 +50,20 @@ main{max-width:720px;margin:0 auto;padding:0 24px 80px}
 footer{text-align:center;padding:32px 24px;font-size:12px;color:var(--muted);border-top:1px solid var(--border);font-weight:300;letter-spacing:.3px}
 footer a{color:var(--muted);text-decoration:none;transition:color .15s}
 footer a:hover{color:var(--accent)}
-@media(max-width:480px){header{padding:40px 20px 36px}main{padding:0 20px 60px}.ranking-item{grid-template-columns:36px 68px 1fr auto;gap:12px;padding:16px 0}.shop-thumb,.shop-thumb-empty{width:68px;height:56px}.rank-num{font-size:20px}.item-name{font-size:14px}.score-val{font-size:17px}.flavor-name{font-size:10px}}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px;animation:mFadeIn .2s ease}
+@keyframes mFadeIn{from{opacity:0}to{opacity:1}}
+.modal-card{background:var(--surface);border-radius:14px;max-width:480px;width:100%;max-height:82vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.modal-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:20px 20px 16px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--surface);border-radius:14px 14px 0 0}
+.modal-shop-name{font-size:15px;font-weight:700;line-height:1.4}
+.modal-close{background:none;border:none;cursor:pointer;color:var(--muted);font-size:18px;line-height:1;padding:2px 4px;border-radius:4px;flex-shrink:0;transition:color .15s}
+.modal-close:hover{color:var(--text)}
+.modal-review-item{padding:16px 20px;border-bottom:1px solid var(--border)}
+.modal-review-item:last-child{border-bottom:none}
+.modal-review-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.modal-stars{color:var(--accent);font-size:13px;letter-spacing:1px}
+.modal-date{font-size:11px;color:var(--muted);font-weight:300}
+.modal-review-text{font-size:14px;font-weight:300;line-height:1.7;color:var(--text);white-space:pre-wrap}
+@media(max-width:480px){header{padding:40px 20px 36px}main{padding:0 20px 60px}.ranking-item{grid-template-columns:36px 68px 1fr auto;gap:12px;padding:16px 0}.shop-thumb,.shop-thumb-empty{width:68px;height:56px}.rank-num{font-size:20px}.item-name{font-size:14px}.score-val{font-size:17px}.flavor-name{font-size:10px}.modal-overlay{padding:12px}}
 </style>
 </head>
 <body>
@@ -56,7 +71,7 @@ footer a:hover{color:var(--accent)}
   <div class="header-inner">
     <p class="header-label">Sudo Farm &nbsp;&middot;&nbsp; 生シェイク祭り 2026</p>
     <h1>レビューまとめ</h1>
-    <p class="subtitle">レビューの数や評価が全てなのか？</p>
+    <p class="subtitle">β版</p>
     <div class="meta-row"><span class="updated-at" id="updatedAt">読み込み中…</span></div>
   </div>
 </header>
@@ -66,24 +81,29 @@ footer a:hover{color:var(--accent)}
   <p style="margin-top:6px">承認済みレビューを毎日17時に自動更新。</p>
 </footer>
 <script>
-var _shops=[],_storeMap={},_currentSort='score',_sortListenerAdded=false;
+var _shops=[],_storeMap={},_currentSort='score',_listenerAdded=false;
 function fmtScore(s){return parseFloat(s).toFixed(1)}
 function fmtAvg(a){return parseFloat(a).toFixed(1)}
-function normalizeName(n){return n.replace(/[\s\u3000]+/g,' ').trim()}
-function buildStoreMap(si){
-  var m={};
-  (si.stores||[]).forEach(function(s){m[normalizeName(s.name)]={img:s.img||'',url:s.url||'',flavor_name:s.flavor_name||''}});
-  return m;
-}
-function lookupStore(n){return _storeMap[normalizeName(n)]||{}}
+function norm(n){return n.replace(/[\s\u3000]+/g,' ').trim()}
+function buildStoreMap(si){var m={};(si.stores||[]).forEach(function(s){m[norm(s.name)]={img:s.img||'',url:s.url||'',flavor_name:s.flavor_name||''}});return m}
+function lookup(n){return _storeMap[norm(n)]||{}}
 function nameLink(n,u){return u?'<a href="'+u+'" target="_blank" rel="noopener">'+n+'</a>':n}
-function sortShops(shops,mode){
-  var s=shops.slice();
-  if(mode==='score')s.sort(function(a,b){return(b.total_score-a.total_score)||(b.avg_rating-a.avg_rating)||a.name.localeCompare(b.name,'ja')});
-  else if(mode==='count')s.sort(function(a,b){return(b.review_count-a.review_count)||(b.avg_rating-a.avg_rating)||a.name.localeCompare(b.name,'ja')});
-  else if(mode==='new')s.sort(function(a,b){var da=a.latest_review_date||'',db=b.latest_review_date||'';return db.localeCompare(da)||a.name.localeCompare(b.name,'ja')});
-  return s;
+function stars(n){var s='';for(var i=0;i<5;i++)s+=i<n?'★':'☆';return s}
+function sortShops(shops,mode){var s=shops.slice();if(mode==='score')s.sort(function(a,b){return(b.total_score-a.total_score)||(b.avg_rating-a.avg_rating)||a.name.localeCompare(b.name,'ja')});else if(mode==='count')s.sort(function(a,b){return(b.review_count-a.review_count)||(b.avg_rating-a.avg_rating)||a.name.localeCompare(b.name,'ja')});else if(mode==='new')s.sort(function(a,b){var da=a.latest_review_date||'',db=b.latest_review_date||'';return db.localeCompare(da)||a.name.localeCompare(b.name,'ja')});return s}
+function openModal(shopName){
+  var shop=_shops.find(function(s){return s.name===shopName});
+  if(!shop)return;
+  var reviews=shop.reviews||[];
+  var revHtml=reviews.length===0?'<div style="padding:24px 20px;color:#9a9590;font-size:14px">レビューがありません</div>':reviews.map(function(r){return'<div class="modal-review-item"><div class="modal-review-meta"><span class="modal-stars">'+stars(r.rating)+'</span><span class="modal-date">'+r.date+'</span></div><div class="modal-review-text">'+r.text+'</div></div>'}).join('');
+  var overlay=document.createElement('div');
+  overlay.className='modal-overlay';
+  overlay.innerHTML='<div class="modal-card" id="modalCard"><div class="modal-header"><div class="modal-shop-name">'+shopName+'</div><button class="modal-close" id="modalCloseBtn">&#x2715;</button></div>'+revHtml+'</div>';
+  document.body.appendChild(overlay);
+  document.body.style.overflow='hidden';
+  overlay.addEventListener('click',function(e){if(!document.getElementById('modalCard').contains(e.target))closeModal()});
+  document.getElementById('modalCloseBtn').addEventListener('click',closeModal);
 }
+function closeModal(){var m=document.querySelector('.modal-overlay');if(m)m.remove();document.body.style.overflow=''}
 function renderApp(){
   var sorted=sortShops(_shops,_currentSort),isScore=_currentSort==='score';
   var modes=[['score','総合スコア順'],['count','レビュー数順'],['new','新着順']];
@@ -91,16 +111,17 @@ function renderApp(){
   modes.forEach(function(m){bar+='<button class="sort-btn'+((_currentSort===m[0])?' active':'')+'" data-sort="'+m[0]+'">'+m[1]+'</button>'});
   bar+='</div>';
   var items=sorted.map(function(s,i){
-    var info=lookupStore(s.name);
+    var info=lookup(s.name);
     var rank=String(i+1).padStart(2,'0');
     var img=info.img?'<img class="shop-thumb" src="'+info.img+'" alt="'+s.name+'" loading="lazy">'  :'<div class="shop-thumb-empty">🥤</div>';
-    var fl=info.flavor_name?'<div class="flavor-name">'+info.flavor_name+'</div>':'' ;
+    var fl=info.flavor_name?'<div class="flavor-name">'+info.flavor_name+'</div>':'';
     var sc='';
     if(_currentSort==='score')sc='<span class="score-val">'+fmtScore(s.total_score)+'</span><span class="score-label">SCORE</span>';
     else if(_currentSort==='count')sc='<span class="score-val">'+s.review_count+'</span><span class="score-label">件</span>';
     else{var d=s.latest_review_date?s.latest_review_date.replace(/-/g,'/'):'—';sc='<span class="score-date">'+d+'</span>';}
     var tc=(isScore&&i<3)?' is-top':'';
-    return '<div class="ranking-item'+tc+'" style="animation-delay:'+(i*0.05)+'s"><div class="rank-num">'+rank+'</div>'+img+'<div class="item-info">'+fl+'<div class="item-name">'+nameLink(s.name,info.url)+'</div><div class="item-meta"><span class="item-rating">★ '+fmtAvg(s.avg_rating)+'</span> &nbsp;·&nbsp; '+s.review_count+'件のレビュー</div></div><div class="item-score">'+sc+'</div></div>';
+    var safeName=s.name.replace(/&/g,'&amp;');
+    return '<div class="ranking-item'+tc+'" style="animation-delay:'+(i*0.05)+'s"><div class="rank-num">'+rank+'</div>'+img+'<div class="item-info">'+fl+'<div class="item-name">'+nameLink(s.name,info.url)+'</div><div class="item-meta"><span class="item-rating">★ '+fmtAvg(s.avg_rating)+'</span><span>&nbsp;·&nbsp;</span><button class="review-link" data-shop="'+safeName+'">'+s.review_count+'件のレビュー</button></div></div><div class="item-score">'+sc+'</div></div>';
   }).join('');
   return bar+'<div class="ranking-list">'+items+'</div>';
 }
@@ -110,20 +131,19 @@ async function load(){
     var t=Date.now();
     var rs=await Promise.all([fetch('ranking.json?t='+t),fetch('store-info.json?t='+t)]);
     if(!rs[0].ok)throw new Error('fail');
-    var data=await rs[0].json();
-    var si=rs[1].ok?await rs[1].json():{stores:[]};
+    var data=await rs[0].json(),si=rs[1].ok?await rs[1].json():{stores:[]};
     _storeMap=buildStoreMap(si);_shops=data.shops||[];
     badge.textContent='最終更新：'+(data.updated_at||'—');
     if(_shops.length===0){app.innerHTML='<div class="empty"><p>まだレビューがありません</p><small>レビューが承認されるとここに表示されます</small></div>';return;}
     app.innerHTML=renderApp();
-    if(!_sortListenerAdded){
+    if(!_listenerAdded){
       document.querySelector('main').addEventListener('click',function(e){
-        var btn=e.target.closest('.sort-btn');
-        if(!btn)return;
-        _currentSort=btn.dataset.sort;
-        document.getElementById('app').innerHTML=renderApp();
+        var sb=e.target.closest('.sort-btn');
+        if(sb){_currentSort=sb.dataset.sort;document.getElementById('app').innerHTML=renderApp();return;}
+        var rb=e.target.closest('.review-link');
+        if(rb)openModal(rb.dataset.shop);
       });
-      _sortListenerAdded=true;
+      _listenerAdded=true;
     }
   }catch(e){badge.textContent='—';app.innerHTML='<div class="empty"><p>データを読み込んでいます</p><small>しばらくしてからページを更新してください</small></div>';}
 }
