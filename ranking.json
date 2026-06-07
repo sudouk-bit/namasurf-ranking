@@ -1,4 +1,53 @@
 {
-    "updated_at": "2026-05-13 17:00",
-    "shops": []
+  "updated_at": "2026-06-07 17:00",
+  "shops": [
+    {
+      "name": "木村ピーナッツ（ピネキ）",
+      "review_count": 2,
+      "avg_rating": 4.5,
+      "total_score": 9
+    },
+    {
+      "name": "Calf Hatch Yohyo",
+      "review_count": 1,
+      "avg_rating": 5,
+      "total_score": 5
+    },
+    {
+      "name": "LAUNDRY&CAFE MAKANA",
+      "review_count": 1,
+      "avg_rating": 5,
+      "total_score": 5
+    },
+    {
+      "name": "cafe&pâtisserie白雪小町",
+      "review_count": 1,
+      "avg_rating": 5,
+      "total_score": 5
+    },
+    {
+      "name": "photon325",
+      "review_count": 1,
+      "avg_rating": 5,
+      "total_score": 5
+    },
+    {
+      "name": "須藤牧場 富浦店",
+      "review_count": 1,
+      "avg_rating": 5,
+      "total_score": 5
+    },
+    {
+      "name": "naeme farmers stand",
+      "review_count": 1,
+      "avg_rating": 4,
+      "total_score": 4
+    },
+    {
+      "name": "伏姫BURGER",
+      "review_count": 1,
+      "avg_rating": 4,
+      "total_score": 4
+    }
+  ]
 }
