@@ -3,329 +3,131 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>レビューまと、｜須藤牧場 生シェイク祭り2026</title>
+<title>レビューまとめ｜須藤牧場 生シェイク祭り2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg:       #f8f7f5;
-    --surface:  #ffffff;
-    --text:     #1c1b1a;
-    --muted:    #9a9590;
-    --border:   #e5e2de;
-    --accent:   #3a5a3a;
-    --dim:      #d8d4cf;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', 'Yu Gothic UI', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* ── Header ── */
-  header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 52px 24px 44px;
-  }
-
-  .header-inner {
-    max-width: 720px;
-    margin: 0 auto;
-  }
-
-  .header-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 3px;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 22px;
-  }
-
-  header h1 {
-    font-size: clamp(30px, 6vw, 46px);
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    line-height: 1.15;
-    margin-bottom: 14px;
-  }
-
-  .subtitle {
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--muted);
-    letter-spacing: 0.3px;
-  }
-
-  .meta-row {
-    display: flex;
-    align-items: center;
-    margin-top: 36px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border);
-  }
-
-  .updated-at {
-    font-size: 12px;
-    color: var(--muted);
-    font-weight: 300;
-    letter-spacing: 0.3px;
-  }
-
-  /* ── Main ── */
-  main {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 0 24px 80px;
-  }
-
-  /* ── Loading ── */
-  .loading {
-    padding: 80px 0;
-    text-align: center;
-    color: var(--muted);
-    font-size: 14px;
-    font-weight: 300;
-  }
-
-  /* ── Ranking List ── */
-  .ranking-list {
-    border-top: 1px solid var(--border);
-  }
-
-  .ranking-item {
-    display: grid;
-    grid-template-columns: 60px 1fr auto;
-    align-items: center;
-    gap: 24px;
-    padding: 28px 0;
-    border-bottom: 1px solid var(--border);
-    animation: fadeUp .45s ease both;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── Rank number ── */
-  .rank-num {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--dim);
-    text-align: right;
-    line-height: 1;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: -1px;
-  }
-
-  .ranking-item.is-top .rank-num {
-    color: var(--text);
-  }
-
-  /* ── Store info ── */
-  .item-name {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 6px;
-    line-height: 1.4;
-  }
-
-  .item-name a {
-    color: var(--text);
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: color .15s, border-color .15s;
-    padding-bottom: 1px;
-  }
-
-  .item-name a:hover {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-  }
-
-  .item-meta {
-    font-size: 12px;
-    color: var(--muted);
-    font-weight: 300;
-    letter-spacing: 0.3px;
-  }
-
-  .item-rating {
-    color: var(--accent);
-    font-weight: 500;
-  }
-
-  /* ── Score ── */
-  .item-score {
-    text-align: right;
-    min-width: 68px;
-  }
-
-  .score-val {
-    font-size: 22px;
-    font-weight: 700;
-    display: block;
-    line-height: 1;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: -0.5px;
-    margin-bottom: 4px;
-  }
-
-  .score-label {
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 2px;
-    font-weight: 400;
-  }
-
-  /* ── Empty ── */
-  .empty {
-    padding: 80px 0;
-    text-align: center;
-    color: var(--muted);
-  }
-
-  .empty p { font-size: 16px; margin-bottom: 8px; font-weight: 300; }
-  .empty small { font-size: 13px; }
-
-  /* ── Footer ── */
-  footer {
-    text-align: center;
-    padding: 32px 24px;
-    font-size: 12px;
-    color: var(--muted);
-    border-top: 1px solid var(--border);
-    font-weight: 300;
-    letter-spacing: 0.3px;
-  }
-
-  footer a { color: var(--muted); text-decoration: none; transition: color .15s; }
-  footer a:hover { color: var(--accent); }
-
-  /* ── Responsive ── */
-  @media (max-width: 480px) {
-    header { padding: 40px 20px 36px; }
-    main { padding: 0 20px 60px; }
-    .ranking-item { grid-template-columns: 44px 1fr auto; gap: 16px; padding: 22px 0; }
-    .rank-num { font-size: 22px; }
-    .item-name { font-size: 15px; }
-    .score-val { font-size: 18px; }
-  }
+:root{--bg:#f8f7f5;--surface:#fff;--text:#1c1b1a;--muted:#9a9590;--border:#e5e2de;--accent:#3a5a3a;--dim:#d8d4cf}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP','Hiragino Kaku Gothic Pro','Yu Gothic UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+header{background:var(--surface);border-bottom:1px solid var(--border);padding:52px 24px 44px}
+.header-inner{max-width:720px;margin:0 auto}
+.header-label{font-size:11px;font-weight:500;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:22px}
+header h1{font-size:clamp(30px,6vw,46px);font-weight:700;letter-spacing:-.5px;line-height:1.15;margin-bottom:14px}
+.subtitle{font-size:14px;font-weight:300;color:var(--muted);letter-spacing:.3px}
+.meta-row{display:flex;align-items:center;margin-top:36px;padding-top:20px;border-top:1px solid var(--border)}
+.updated-at{font-size:12px;color:var(--muted);font-weight:300;letter-spacing:.3px}
+main{max-width:720px;margin:0 auto;padding:0 24px 80px}
+.loading{padding:80px 0;text-align:center;color:var(--muted);font-size:14px;font-weight:300}
+.sort-bar{display:flex;gap:8px;padding:24px 0 4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.sort-bar::-webkit-scrollbar{display:none}
+.sort-btn{flex-shrink:0;padding:7px 16px;border:1.5px solid var(--border);border-radius:99px;background:var(--surface);color:var(--muted);font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;font-family:inherit;letter-spacing:.3px;white-space:nowrap}
+.sort-btn:hover{border-color:var(--accent);color:var(--accent)}
+.sort-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.ranking-list{border-top:1px solid var(--border);margin-top:16px}
+.ranking-item{display:grid;grid-template-columns:52px 88px 1fr auto;align-items:center;gap:16px;padding:20px 0;border-bottom:1px solid var(--border);animation:fadeUp .4s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.rank-num{font-size:26px;font-weight:700;color:var(--dim);text-align:right;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-1px}
+.ranking-item.is-top .rank-num{color:var(--text)}
+.shop-thumb{width:88px;height:70px;border-radius:8px;object-fit:cover;background:var(--border)}
+.shop-thumb-empty{width:88px;height:70px;border-radius:8px;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--dim)}
+.flavor-name{font-size:11px;font-weight:500;color:var(--accent);margin-bottom:4px;line-height:1.35;letter-spacing:.2px}
+.item-name{font-size:15px;font-weight:700;margin-bottom:5px;line-height:1.35}
+.item-name a{color:var(--text);text-decoration:none;border-bottom:1px solid transparent;transition:color .15s,border-color .15s;padding-bottom:1px}
+.item-name a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.item-meta{font-size:12px;color:var(--muted);font-weight:300;letter-spacing:.3px}
+.item-rating{color:var(--accent);font-weight:500}
+.item-score{text-align:right;min-width:60px}
+.score-val{font-size:20px;font-weight:700;display:block;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.5px;margin-bottom:4px}
+.score-label{font-size:10px;color:var(--muted);letter-spacing:2px;font-weight:400}
+.score-date{font-size:11px;font-weight:400;color:var(--muted);line-height:1.5;text-align:right}
+.empty{padding:80px 0;text-align:center;color:var(--muted)}
+.empty p{font-size:16px;margin-bottom:8px;font-weight:300}
+.empty small{font-size:13px}
+footer{text-align:center;padding:32px 24px;font-size:12px;color:var(--muted);border-top:1px solid var(--border);font-weight:300;letter-spacing:.3px}
+footer a{color:var(--muted);text-decoration:none;transition:color .15s}
+footer a:hover{color:var(--accent)}
+@media(max-width:480px){header{padding:40px 20px 36px}main{padding:0 20px 60px}.ranking-item{grid-template-columns:36px 68px 1fr auto;gap:12px;padding:16px 0}.shop-thumb,.shop-thumb-empty{width:68px;height:56px}.rank-num{font-size:20px}.item-name{font-size:14px}.score-val{font-size:17px}.flavor-name{font-size:10px}}
 </style>
 </head>
 <body>
-
 <header>
   <div class="header-inner">
-    <p class="header-label">Sudo Farm &nbsp;·&nbsp; 生シォイク祭り 2026</p>
+    <p class="header-label">Sudo Farm &nbsp;&middot;&nbsp; 生シェイク祭り 2026</p>
     <h1>レビューまとめ</h1>
     <p class="subtitle">レビューの数や評価が全てなのか？</p>
-    <div class="meta-row">
-      <span class="updated-at" id="updatedAt">読み込み中…</span>
-    </div>
+    <div class="meta-row"><span class="updated-at" id="updatedAt">読み込み中…</span></div>
   </div>
 </header>
-
-<main>
-  <div id="app">
-    <div class="loading">読み込み中…</div>
-  </div>
-</main>
-
+<main><div id="app"><div class="loading">読み込み中…</div></div></main>
 <footer>
-  <p>© 株式会社須藤牧場 &nbsp;·&nbsp; <a href="https://www.sudo-farm.com/" target="_blank">sudo-farm.com</a></p>
-  <p style="margin-top:6px">ランキングは毎日17時に自動更新。承認済みレビューの総合スコア（平均評価 × 件数）で算出。</p>
+  <p>&copy; 株式会社須藤牧場 &nbsp;&middot;&nbsp; <a href="https://www.sudo-farm.com/" target="_blank">sudo-farm.com</a></p>
+  <p style="margin-top:6px">承認済みレビューを毎日17時に自動更新。</p>
 </footer>
-
 <script>
-function fmtScore(s) { return parseFloat(s).toFixed(1); }
-function fmtAvg(a)   { return parseFloat(a).toFixed(1); }
-
-function normalizeName(name) {
-  return name.replace(/[\s　]+/g, ' ').trim();
+var _shops=[],_storeMap={},_currentSort='score',_sortListenerAdded=false;
+function fmtScore(s){return parseFloat(s).toFixed(1)}
+function fmtAvg(a){return parseFloat(a).toFixed(1)}
+function normalizeName(n){return n.replace(/[\s\u3000]+/g,' ').trim()}
+function buildStoreMap(si){
+  var m={};
+  (si.stores||[]).forEach(function(s){m[normalizeName(s.name)]={img:s.img||'',url:s.url||'',flavor_name:s.flavor_name||''}});
+  return m;
 }
-
-function buildStoreMap(storeInfo) {
-  const map = {};
-  (storeInfo.stores || []).forEach(s => {
-    map[normalizeName(s.name)] = { img: s.img, url: s.url };
-  });
-  return map;
+function lookupStore(n){return _storeMap[normalizeName(n)]||{}}
+function nameLink(n,u){return u?'<a href="'+u+'" target="_blank" rel="noopener">'+n+'</a>':n}
+function sortShops(shops,mode){
+  var s=shops.slice();
+  if(mode==='score')s.sort(function(a,b){return(b.total_score-a.total_score)||(b.avg_rating-a.avg_rating)||a.name.localeCompare(b.name,'ja')});
+  else if(mode==='count')s.sort(function(a,b){return(b.review_count-a.review_count)||(b.avg_rating-a.avg_rating)||a.name.localeCompare(b.name,'ja')});
+  else if(mode==='new')s.sort(function(a,b){var da=a.latest_review_date||'',db=b.latest_review_date||'';return db.localeCompare(da)||a.name.localeCompare(b.name,'ja')});
+  return s;
 }
-
-function lookupStore(storeMap, name) {
-  return storeMap[normalizeName(name)] || {};
+function renderApp(){
+  var sorted=sortShops(_shops,_currentSort),isScore=_currentSort==='score';
+  var modes=[['score','総合スコア順'],['count','レビュー数順'],['new','新着順']];
+  var bar='<div class="sort-bar">';
+  modes.forEach(function(m){bar+='<button class="sort-btn'+((_currentSort===m[0])?' active':'')+'" data-sort="'+m[0]+'">'+m[1]+'</button>'});
+  bar+='</div>';
+  var items=sorted.map(function(s,i){
+    var info=lookupStore(s.name);
+    var rank=String(i+1).padStart(2,'0');
+    var img=info.img?'<img class="shop-thumb" src="'+info.img+'" alt="'+s.name+'" loading="lazy">'  :'<div class="shop-thumb-empty">🥤</div>';
+    var fl=info.flavor_name?'<div class="flavor-name">'+info.flavor_name+'</div>':'' ;
+    var sc='';
+    if(_currentSort==='score')sc='<span class="score-val">'+fmtScore(s.total_score)+'</span><span class="score-label">SCORE</span>';
+    else if(_currentSort==='count')sc='<span class="score-val">'+s.review_count+'</span><span class="score-label">件</span>';
+    else{var d=s.latest_review_date?s.latest_review_date.replace(/-/g,'/'):'—';sc='<span class="score-date">'+d+'</span>';}
+    var tc=(isScore&&i<3)?' is-top':'';
+    return '<div class="ranking-item'+tc+'" style="animation-delay:'+(i*0.05)+'s"><div class="rank-num">'+rank+'</div>'+img+'<div class="item-info">'+fl+'<div class="item-name">'+nameLink(s.name,info.url)+'</div><div class="item-meta"><span class="item-rating">★ '+fmtAvg(s.avg_rating)+'</span> &nbsp;·&nbsp; '+s.review_count+'件のレビュー</div></div><div class="item-score">'+sc+'</div></div>';
+  }).join('');
+  return bar+'<div class="ranking-list">'+items+'</div>';
 }
-
-function nameLink(name, url) {
-  if (url) return `<a href="${url}" target="_blank" rel="noopener">${name}</a>`;
-  return name;
-}
-
-function renderList(shops, storeMap) {
-  return `<div class="ranking-list">
-    ${shops.map((s, i) => {
-      const info = lookupStore(storeMap, s.name);
-      const rankStr = String(i + 1).padStart(2, '0');
-      return `
-      <div class="ranking-item ${i < 3 ? 'is-top' : ''}" style="animation-delay:${i * 0.05}s">
-        <div class="rank-num">${rankStr}</div>
-        <div class="item-info">
-          <div class="item-name">${nameLink(s.name, info.url)}</div>
-          <div class="item-meta">
-            <span class="item-rating">★ ${fmtAvg(s.avg_rating)}</span>
-            &nbsp;·&nbsp; ${s.review_count}件のレビュー
-          </div>
-        </div>
-        <div class="item-score">
-          <span class="score-val">${fmtScore(s.total_score)}</span>
-          <span class="score-label">SCORE</span>
-        </div>
-      </div>`;
-    }).join('')}
-  </div>`;
-}
-
-async function load() {
-  const app = document.getElementById('app');
-  const badge = document.getElementById('updatedAt');
-  try {
-    const t = Date.now();
-    const [rankRes, infoRes] = await Promise.all([
-      fetch('ranking.json?t=' + t),
-      fetch('store-info.json?t=' + t)
-    ]);
-    if (!rankRes.ok) throw new Error('ranking fetch failed');
-
-    const data = await rankRes.json();
-    const storeInfo = infoRes.ok ? await infoRes.json() : { stores: [] };
-    const storeMap = buildStoreMap(storeInfo);
-
-    badge.textContent = '最終更新：' + (data.updated_at || '—');
-
-    const shops = (data.shops || []).sort((a, b) => b.total_score - a.total_score);
-    if (shops.length === 0) {
-      app.innerHTML = `<div class="empty"><p>まだレビューがありません</p><small>レビューが承認されるとここに表示されます</small></div>`;
-      return;
+async function load(){
+  var app=document.getElementById('app'),badge=document.getElementById('updatedAt');
+  try{
+    var t=Date.now();
+    var rs=await Promise.all([fetch('ranking.json?t='+t),fetch('store-info.json?t='+t)]);
+    if(!rs[0].ok)throw new Error('fail');
+    var data=await rs[0].json();
+    var si=rs[1].ok?await rs[1].json():{stores:[]};
+    _storeMap=buildStoreMap(si);_shops=data.shops||[];
+    badge.textContent='最終更新：'+(data.updated_at||'—');
+    if(_shops.length===0){app.innerHTML='<div class="empty"><p>まだレビューがありません</p><small>レビューが承認されるとここに表示されます</small></div>';return;}
+    app.innerHTML=renderApp();
+    if(!_sortListenerAdded){
+      document.querySelector('main').addEventListener('click',function(e){
+        var btn=e.target.closest('.sort-btn');
+        if(!btn)return;
+        _currentSort=btn.dataset.sort;
+        document.getElementById('app').innerHTML=renderApp();
+      });
+      _sortListenerAdded=true;
     }
-
-    app.innerHTML = renderList(shops, storeMap);
-  } catch (e) {
-    badge.textContent = '—';
-    app.innerHTML = `<div class="empty"><p>データを読み込んでいます</p><small>しばらくしてからページを更新してください</small></div>`;
-  }
+  }catch(e){badge.textContent='—';app.innerHTML='<div class="empty"><p>データを読み込んでいます</p><small>しばらくしてからページを更新してください</small></div>';}
 }
-
-load();
-setInterval(load, 600000);
+load();setInterval(load,600000);
 </script>
 </body>
 </html>
