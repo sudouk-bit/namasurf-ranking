@@ -1,13 +1,18 @@
 {
-  "updated_at": "2026-07-05 17:04",
+  "updated_at": "2026-07-06 17:04",
   "shops": [
     {
       "name": "LAUNDRY&CAFE MAKANA",
-      "review_count": 9,
+      "review_count": 10,
       "avg_rating": 5,
-      "total_score": 75,
-      "latest_review_date": "2026-07-02",
+      "total_score": 79.1,
+      "latest_review_date": "2026-07-05",
       "reviews": [
+        {
+          "date": "2026-07-05",
+          "rating": 5,
+          "text": "チーズケーキ生シェイク(プレーン)をいただきました。甘しょっぱくて美味しかったです！"
+        },
         {
           "date": "2026-07-02",
           "rating": 5,
