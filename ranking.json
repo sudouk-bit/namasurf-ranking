@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-17 17:04",
+  "updated_at": "2026-07-18 17:03",
   "shops": [
     {
       "name": "LAUNDRY&CAFE MAKANA",
@@ -540,6 +540,20 @@
       ]
     },
     {
+      "name": "Isle Hawaiian Cafe&Bar",
+      "review_count": 1,
+      "avg_rating": 4,
+      "total_score": 16,
+      "latest_review_date": "2026-07-18",
+      "reviews": [
+        {
+          "date": "2026-07-18",
+          "rating": 4,
+          "text": "グァバ生シェイクをいただきました！グァバの爽やかな風味と濃厚なミルクが相性抜群で、とても美味しかったです。お店はハワイアンな雰囲気がとても良く、まるで旅行気分を味わえました。料理も千葉ではなかなか食べられないハワイアンメニューが豊富で、シェイクだけでなく食事も楽しめる素敵なお店でした。また訪れたいと思います♪"
+        }
+      ]
+    },
+    {
       "name": "PON COFFEE SPOT",
       "review_count": 1,
       "avg_rating": 4,
@@ -578,6 +592,20 @@
           "date": "2026-06-04",
           "rating": 4,
           "text": "キャラメルが濃厚でバーガーと合う"
+        }
+      ]
+    },
+    {
+      "name": "キッチン在来",
+      "review_count": 1,
+      "avg_rating": 1,
+      "total_score": 1,
+      "latest_review_date": "2026-07-17",
+      "reviews": [
+        {
+          "date": "2026-07-17",
+          "rating": 1,
+          "text": "住所の場所に行っても店がないし、サイトを見ても生シェイクをやっているかどうかもよくわからないので、ぜひ情報をいただきたいです。"
         }
       ]
     }
