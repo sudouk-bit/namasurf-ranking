@@ -1,13 +1,18 @@
 {
-  "updated_at": "2026-09-28 17:10",
+  "updated_at": "2026-10-05 17:05",
   "shops": [
     {
       "name": "LAUNDRY&CAFE MAKANA",
-      "review_count": 12,
+      "review_count": 13,
       "avg_rating": 5,
-      "total_score": 86.6,
-      "latest_review_date": "2026-07-10",
+      "total_score": 90.1,
+      "latest_review_date": "2026-09-22",
       "reviews": [
+        {
+          "date": "2026-09-22",
+          "rating": 5,
+          "text": "北のリルミルフィー、南のマカナ　両横綱は甲乙つけがたい。が、この2店は生シェイクの定義から外した方がいいんじゃないかというくらいレベルが高すぎて反則な気もする。念のため釣り合わないくらい両店とも値段は高くない"
+        },
         {
           "date": "2026-07-10",
           "rating": 5,
